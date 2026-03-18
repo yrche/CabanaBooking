@@ -3,3 +3,7 @@ flake.lock
 flake.nix
 package-lock.json
 package.json
+server/.env
+client/.env
+bookings.json
+map.ascii
