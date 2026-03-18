@@ -2,6 +2,7 @@ import {MapParser} from "@infrastructure/parser/map.parser.js";
 import {ICabana, ICell} from "@domain/interfaces/cabana.interface.js";
 import { jest } from "@jest/globals";
 import {fakeMapMock, fakeMapParserMock, mapMock, mapParserMock} from "@infrastructure/parser/mock/map.parser.mock.js";
+
 import {IMap} from "@domain/interfaces/map.interface.js";
 
 describe("Map Parser", () => {
@@ -26,3 +27,4 @@ describe("Map Parser", () => {
         expect(result).toEqual(fakeMapMock)
     });
 })
+
