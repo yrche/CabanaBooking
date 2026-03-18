@@ -7,15 +7,6 @@ Built with React, TypeScript, and Vite.
 
 ---
 
-## Installation and Run
-
-```bash
-npm install
-npm run dev
-```
-
----
-
 ## Environment Variables (.env)
 
 Before running the project, create a `.env` file in the `client/` directory:
