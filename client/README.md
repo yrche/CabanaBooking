@@ -107,9 +107,3 @@ This helps to:
 * prevent booking conflicts
 * keep data consistent
 * improve user experience
-
----
-
-## Notes
-
-It is recommended to add `.env` to `.gitignore` to avoid committing environment-specific configuration.
