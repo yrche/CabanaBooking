@@ -1,75 +1,124 @@
-# React + TypeScript + Vite
+# Client (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+Frontend part of the cabana booking application.
+Built with React, TypeScript, and Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Installation and Run
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Environment Variables (.env)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Before running the project, create a `.env` file in the `client/` directory:
+
+```env
+VITE_SERVER_NAME=http://localhost
+VITE_PORT=3000
 ```
+
+### Variables description:
+
+* `VITE_SERVER_NAME` — backend server host
+* `VITE_PORT` — backend server port
+
+These variables are used to build the API base URL.
+
+---
+
+## Architecture
+
+The project follows a modified **Feature-Based Design (FBD)** approach.
+
+### Project structure:
+
+```
+src/
+├── app         # application initialization
+├── config      # configuration (env, setup)
+├── entities    # business entities (cabana, map)
+├── features    # user features
+├── pages       # pages composition
+├── shared      # reusable code (UI, API, utils)
+```
+
+---
+
+## Layers
+
+### entities
+
+Core business entities including:
+
+* models
+* interfaces
+* UI components
+
+Examples: `cabana`, `map`
+
+---
+
+### features
+
+Encapsulated user scenarios:
+
+* `book-cabana` — cabana booking logic and UI
+* `get-map` — map fetching and processing
+
+---
+
+### shared
+
+Reusable parts of the application:
+
+* UI components
+* API layer
+* interfaces
+* assets
+
+---
+
+### pages
+
+High-level composition of features into screens.
+
+---
+
+## Advantages of the Architecture
+
+* Clear separation of concerns
+* High reusability
+* Scalable structure
+* Isolated business logic inside features
+* Easier maintenance and refactoring
+
+---
+
+## Realtime Updates (WebSocket)
+
+The application uses a WebSocket listener to handle realtime updates.
+
+When a cabana is booked:
+
+* all connected clients receive updates instantly
+* UI is updated without page reload
+
+This helps to:
+
+* prevent booking conflicts
+* keep data consistent
+* improve user experience
+
+---
+
+## Notes
+
+It is recommended to add `.env` to `.gitignore` to avoid committing environment-specific configuration.
